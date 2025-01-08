@@ -1,73 +1,41 @@
 import React from 'react';
-import fight from '../assets/fight.png';
-import trade from '../assets/trade.png';
-import win from '../assets/win.png';
+import bgImage from '../assets/bg.jpg'; // Import the background image
 
-const Features = () => {
+const Homepage = () => {
   return (
-    <section id="features" className="py-16 bg-[#0B0A0A]">
-      <div
-        className="relative w-full min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: "url('./src/assets/bg2.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        
-        <div className="relative z-10 container mx-auto px-4 py-16 flex flex-col min-h-screen">
-        
-          <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <FeatureCard
-              title="FIGHT"
-              image={fight}
-              description="Engage in fierce battles where every decision counts in order to survive."
-            />
-            <FeatureCard
-              title="TRADE"
-              image={trade}
-              description="Exchange goods and resources with NPC's to stay ahead in the game."
-            />
-            <FeatureCard
-              title="WIN"
-              image={win}
-              description="From small enemies to bosses, overcome the dangers beneath to claim victory and save the town."
-            />
-          </div>
+    <section
+      id="home"
+      className="relative w-full h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }} // Use imported image
+    >
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
 
-          <div className="mt-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 text-center uppercase">
-              Planned Features
-            </h2>
-            <ul className="list-none text-xl text-gray-100 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <li className="mb-4 flex items-start">
-                <span className="text-red-500 mr-2">•</span>
-                Enhanced combat mechanics and more enemy variety
-              </li>
-              <li className="mb-4 flex items-start">
-                <span className="text-red-500 mr-2">•</span>
-                Expanded trade system with new NPCs and rare items
-              </li>
-              <li className="mb-4 flex items-start">
-                <span className="text-red-500 mr-2">•</span>
-                New areas to explore, such as the overworld with more exicting entities and beautiful towns
-              </li>
-            </ul>
-          </div>
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 py-16 flex flex-col min-h-screen items-center justify-center text-center text-white">
+        {/* Title */}
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 uppercase">
+          It Lives Beneath
+        </h1>
+        <p className="text-lg md:text-xl mb-6 uppercase">
+          A 2D RPG horror game where every step you take could be your last.
+        </p>
+
+        {/* Call-to-action */}
+        <a
+          href="#download"
+          className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg md:text-xl hover:bg-red-700 transition"
+        >
+          Download Now
+        </a>
+
+        {/* Footer Banner */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-red-600 text-white py-2 px-6 rounded-full text-lg font-semibold whitespace-nowrap">
+          Available on Windows & Mac
         </div>
       </div>
     </section>
   );
 };
 
-const FeatureCard = ({ title, image, description }) => (
-  <div className="text-center mb-8">
-    <h3 className="text-2xl sm:text-3xl font-bold text-white uppercase mb-4">{title}</h3>
-    <img
-      src={image}
-      alt={`${title} Feature`}
-      className="w-full h-auto rounded-lg shadow-lg mb-4"
-    />
-    <p className="text-center text-sm sm:text-base text-gray-100">{description}</p>
-  </div>
-);
-
-export default Features;
-
+export default Homepage;
