@@ -1,8 +1,13 @@
-import React from 'react';
-import { FaTwitter, FaDiscord, FaYoutube, FaGithub } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaInstagram, FaFacebook, FaYoutube, FaGithub } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import PrivacyPolicyModal from '../common/PrivacyPolicyModal';
+import TermsOfServiceModal from '../common/TermsOfServicesModal';
 
 const Footer = () => {
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
+  const [isTermsOfServiceOpen, setIsTermsOfServiceOpen] = useState(false);
+
   return (
     <footer className="bg-gradient-to-b from-[#0B0A0A] to-[#1A1919] text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,13 +30,22 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-6 text-red-500">Legal</h4>
             <ul className="space-y-3">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-red-400 transition duration-300">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <button
+                  onClick={() => setIsPrivacyPolicyOpen(true)}
+                  className="hover:text-red-400 transition duration-300"
+                >
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setIsTermsOfServiceOpen(true)}
+                  className="hover:text-red-400 transition duration-300"
+                >
+                  Terms of Service
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -40,13 +54,17 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-6 text-red-500">Stay Connected</h4>
             <p className="mb-4">Follow us for the latest updates and community events.</p>
             <div className="flex space-x-4">
-              {[FaTwitter, FaDiscord, FaYoutube, FaGithub].map((Icon, index) => (
-                <a key={index} href="#" className="text-gray-400 hover:text-red-400 transition duration-300">
-                  <Icon size={24} />
-                </a>
-              ))}
+                {[{ icon: FaInstagram, link: 'https://www.instagram.com/taleelee20/' },
+                { icon: FaFacebook, link: 'https://www.facebook.com/lee.nillar/' },
+                { icon: FaYoutube, link: 'https://www.youtube.com/@lee9266' },
+                { icon: FaGithub, link: 'https://github.com/LeeePH' }].map(({ icon: Icon, link }, index) => (
+                  <a key={index} href={link} className="text-gray-400 hover:text-red-400 transition duration-300" target="_blank" rel="noopener noreferrer">
+                    <Icon size={24} />
+                  </a>
+                ))}
             </div>
           </div>
+
 
           {/* Newsletter Signup */}
           <div>
@@ -86,6 +104,15 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      <PrivacyPolicyModal
+        isOpen={isPrivacyPolicyOpen}
+        onClose={() => setIsPrivacyPolicyOpen(false)}
+      />
+      <TermsOfServiceModal
+        isOpen={isTermsOfServiceOpen}
+        onClose={() => setIsTermsOfServiceOpen(false)}
+      />
     </footer>
   );
 };
